@@ -1,0 +1,14 @@
+{application, uf2tool, [
+    {description, "Create or join UF2 binaries, for example for Raspberry Pi Pico"},
+    {vsn, "git"},
+    {registered, []},
+    {applications, [
+        kernel,
+        stdlib
+    ]},
+    {env, []},
+    {modules, []},
+
+    {licenses, ["Apache-2.0"]},
+    {links, [{"GitHub", "https://github.com/pguyot/uf2tool"}]}
+]}.

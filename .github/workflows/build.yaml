@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: Apache-2.0
+name: Build
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: erlang:27
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Check format
+      run: |
+        rebar3 as check fmt --check
+    - name: Build
+      run: |
+        rebar3 escriptize
