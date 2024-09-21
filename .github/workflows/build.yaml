@@ -16,6 +16,9 @@ jobs:
     - name: Check format
       run: |
         rebar3 as check fmt --check
+    - name: Run tests
+      run: |
+        rebar3 eunit
     - name: Build
       run: |
         rebar3 escriptize
