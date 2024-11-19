@@ -43,15 +43,23 @@ by [packbeam](https://github.com/atomvm/atomvm_packbeam).
 The start address can be written in decimal or hexadecimal prefixed with `0x`
 or `16#`.
 
-`family_id` is required for RP2350 (Pico2). By default, the family ID is rp2040.
-Pico2 boot ROM doesn't understand this family ID but instead understands
-`absolute`, `data`, `rp2350_arm_s`, `rp2350_riscv`, `rp2350_arm_ns`. Data is
-suitable for Erlang code.
+## Family ID and "universal"
 
-`family_id` can also be `universal` in which case the produced UF2 is the
-catenation of the UF2 that would be produced with `rp2040` and the UF2 that
-would be produced with `data`. Resulting UF2 can be loaded on both Pico and
-Pico2.
+By default, uf2tool creates a binary for the RP2040, with family ID `rp2040`.
+The RP2040 and the RP2350 boot loaders will happily ignore any chunk that have
+a family ID they do not support. RP2040 only understands family id `rp2040`,
+while RP2350 boot ROM understands `absolute`, `data`, `rp2350_arm_s`,
+`rp2350_riscv`, `rp2350_arm_ns`. These family IDs have been designed to load
+code for a particular architecture. `data` is suitable for Erlang code on
+RP2350 as Erlang code works with AtomVM whether it was compiled for RISC V or
+ARM.
+
+`universal` is a special `family_id` that can be used to target both RP2040 and
+RP2350. The produced UF2 is the concatenation of the UF2 that would
+be produced with `rp2040` and the UF2 that would be produced with `data`.
+Because each boot loader will happily ignore chunks with a family ID that they
+do not support, using `universal` creates an UF2 twice the size on desktops,
+but that does not use any extra flash space on the MCUs.
 
 API
 ---
