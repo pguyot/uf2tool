@@ -2,7 +2,7 @@ uf2tool
 =====
 
 Erlang escript to work with .uf2 files, initially developed to flash
-Raspberry Pi Pico microcontrollers with [AtomVM](https://atomvm.net/) virtual
+Raspberry Pi Pico microcontrollers with [AtomVM](https://atomvm.org/) virtual
 machine and Erlang applications.
 
 Build
